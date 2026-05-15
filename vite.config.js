@@ -3,30 +3,28 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import federation from '@originjs/vite-plugin-federation';
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 // https://vite.dev/config/
 export default defineConfig({
   base: '/allinone/',
-  plugins: [
-    react(),
-    federation({
-      name: 'all_in_one',
-      remotes: {
-        // weather: 'http://localhost:5001/allinone/weather/dist/assets/remoteEntry.js', // for development
-        weather: '/allinone/weather/assets/remoteEntry.js', // for production
+  plugins: [react(), federation({
+    name: 'all_in_one',
+    remotes: {
+      // weather: 'http://localhost:5001/allinone/weather/dist/assets/remoteEntry.js', // for development
+      weather: '/allinone/weather/assets/remoteEntry.js', // for production
+    },
+    shared: {
+      react: {
+        singleton: true,
+        eager: true,
       },
-      shared: {
-        react: {
-          singleton: true,
-          eager: true,
-        },
-        'react-dom': {
-          singleton: true,
-          eager: true,
-        }
-      },
-    }),
-    tailwindcss()
-  ],
+      'react-dom': {
+        singleton: true,
+        eager: true,
+      }
+    },
+  }), tailwindcss(), cloudflare()],
   build: {
     target: 'esnext',
     modulePreload: false,
