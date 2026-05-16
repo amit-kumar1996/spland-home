@@ -13,7 +13,7 @@ const Login = () => {
     try {
       const { data } = await api.post("/auth/login", form);
       login(data);
-      window.location.href = "/allinone/";
+      window.location.href = "/";
     } catch (err) {
       setMessage(err.response?.data?.message || "Login failed");
     }

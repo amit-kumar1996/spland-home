@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     const refreshToken = localStorage.getItem("refreshToken");
     if (refreshToken) {
       // await fetch("http://localhost:3002/logout", { //for local development
-      await fetch("https://onespace.ddns.net/api/auth/logout", { //for production )
+      await fetch("https://api.spland.in/auth/logout", { //for production )
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ refreshToken }),
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     }
     localStorage.clear();
     setUser(null);
-    window.location.href = "/allinone/login";
+    window.location.href = "/login";
   };
 
   return (

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   // baseURL: "http://localhost:3002/", //for local development
-  baseURL: "https://onespace.ddns.net/api/", //for production
+  baseURL: "https://api.spland.in/", //for production
 });
 
 api.interceptors.request.use((config) => {
@@ -26,7 +26,7 @@ api.interceptors.response.use(
         // const { data } = await axios.post("http://localhost:3002/token", { refreshToken });
         
         //for production
-        const { data } = await axios.post("https://onespace.ddns.net/api/auth/token", { refreshToken });
+        const { data } = await axios.post("https://api.spland.in/auth/token", { refreshToken });
 
 
         localStorage.setItem("accessToken", data.accessToken);
@@ -34,7 +34,7 @@ api.interceptors.response.use(
         return api(originalRequest);
       } catch {
         localStorage.clear();
-        window.location.href = "/allinone/login";
+        window.location.href = "/login";
       }
     }
 
