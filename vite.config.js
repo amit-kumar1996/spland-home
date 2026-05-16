@@ -12,7 +12,7 @@ export default defineConfig({
       name: 'all_in_one',
       remotes: {
         // weather: 'http://localhost:5001/allinone/weather/dist/assets/remoteEntry.js', // for development
-        weather: '/allinone/weather/assets/remoteEntry.js', // for production
+        weather: '/weather/assets/remoteEntry.js', // for production
       },
       shared: {
         react: {
